@@ -1,0 +1,14 @@
+apply plugin: 'java-library'
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'com.uttara.beeresh.demo1.Demo1Application'
+    )
+  }
+from configurations.compile  
+  // I just copied them into the top of the jar, so it looks like the eclipse exported 
+  // runnable jar, but you could designate a lib directory, and reference that in the 
+  // classpath as "lib/$it.name" instead of it.getName()
+  into ''  
+}
